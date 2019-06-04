@@ -15,6 +15,7 @@ public class InteractibleObject : MonoBehaviour
     public PillColor Pill;
     public GameObject PillPrefab;
     private Pill _spawnedPillLink;
+    private Pill _spawnedPill;
     private float _currentTime;
     private bool _isClosed = true;
     private bool _isTimerStarted = false;
@@ -88,29 +89,37 @@ public class InteractibleObject : MonoBehaviour
     {
         
         Vector3 newPos = new Vector3(transform.position.x + DeactivatorOffset, transform.position.y, transform.position.z);
-        Pill spawnedPill = Instantiate(PillPrefab, newPos, Quaternion.identity).GetComponent<Pill>();
-        _spawnedPillLink = spawnedPill;
+        if (Pill == PillColor.White)
+        {
+            
+                _spawnedPill = Instantiate(PillPrefab, newPos, Quaternion.identity).GetComponent<Pill>();
+            
+        }
+        else if (player.CurrentAbility == Abilities.Empty) {
+            _spawnedPill = Instantiate(PillPrefab, newPos, Quaternion.identity).GetComponent<Pill>();
+        }
+        _spawnedPillLink = _spawnedPill;
        // gameObject.GetComponent<BoxCollider2D>().enabled = false;
         switch (Pill)
         {
             case PillColor.Red:
                 {
-                    spawnedPill.Color = "Red";
+                    _spawnedPill.Color = "Red";
                     break;
                 }
             case PillColor.Blue:
                 {
-                    spawnedPill.Color = "Blue";
+                    _spawnedPill.Color = "Blue";
                     break;
                 }
             case PillColor.Green:
                 {
-                    spawnedPill.Color = "Green";
+                    _spawnedPill.Color = "Green";
                     break;
                 }
             case PillColor.White:
                 {
-                    spawnedPill.Color = "White";
+                    _spawnedPill.Color = "White";
                     break;
                 }
 

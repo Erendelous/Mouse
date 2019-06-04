@@ -10,6 +10,14 @@ public enum PillColor
     White,
     Empty
 }
+public enum Abilities
+{
+    Force,
+    Speed,
+    Invisibility,
+    Empty
+}
+
 public class PlayerManager : MonoBehaviour
 {
     public float Movey;
@@ -21,13 +29,12 @@ public class PlayerManager : MonoBehaviour
     public int Pills;
     public bool IsRight;
 
-    public bool ForceAbility;
-    public Image ForceIm;
-
-    public bool SpeedAbility;
-
+    public Abilities CurrentAbility;
     public PillColor LastColor;
 
+    public Sprite ForceAb;
+    public Sprite SpeedAb;
+    public Sprite InvisAb;
    /* public int RPills;
     public int GPills;
     public int BPills;
@@ -66,29 +73,31 @@ public class PlayerManager : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("ForceWall") && ForceAbility)
+        if (collision.CompareTag("ForceWall") && CurrentAbility==Abilities.Force)
         {
             Destroy(collision.gameObject);
         }
     }
     public void ApplyPower(Sprite one, Sprite two)
     {
-        ForceAbility = true;
-        LastPill.enabled = false;
+        CurrentAbility = Abilities.Force;
+        LastPill.sprite = ForceAb;
         LastColor = PillColor.Empty;
     }
     public void ApplySpeed(Sprite first, Sprite second)
     {
+        CurrentAbility = Abilities.Speed;
         Speed *= 2;
-        LastPill.enabled = false;
+        LastPill.sprite = SpeedAb;
         LastColor = PillColor.Empty;
     }
     public void ClearAbilities()
     {
+        CurrentAbility = Abilities.Empty;
         Speed = _startSpeed;
         LastPill.enabled = false;
         LastColor = PillColor.Empty;
-        ForceAbility = false;
+        
         GetComponent<Renderer>().enabled = true;
     }
 
