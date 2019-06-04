@@ -95,22 +95,22 @@ public class InteractibleObject : MonoBehaviour
         {
             case PillColor.Red:
                 {
-                    spawnedPill.Red = true;
+                    spawnedPill.Color = "Red";
                     break;
                 }
             case PillColor.Blue:
                 {
-                    spawnedPill.Blue = true;
+                    spawnedPill.Color = "Blue";
                     break;
                 }
             case PillColor.Green:
                 {
-                    spawnedPill.Green = true;
+                    spawnedPill.Color = "Green";
                     break;
                 }
             case PillColor.White:
                 {
-                    spawnedPill.White = true;
+                    spawnedPill.Color = "White";
                     break;
                 }
 

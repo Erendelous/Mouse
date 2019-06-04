@@ -4,21 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Pill : MonoBehaviour
 {
-    public bool Green;
-    public bool Red;
-    public bool Blue;
-    public bool White;
+    public string Color;
 
-
-    public Color PillCol;
+    public Sprite[] PillSprites;
     // Start is called before the first frame update
     void Start()
     {
-        if (Green) PillCol = new Color(00, 64, 00, 255);
-        else if (Blue) PillCol = new Color(00, 00, 64, 255);
-        else if (Red) PillCol = new Color(64, 00, 00, 255);
-
-        GetComponent<SpriteRenderer>().color = PillCol;
+        switch (Color)
+        {
+            case "Red":
+                GetComponent<SpriteRenderer>().sprite = PillSprites[0];
+                break;
+            case "Green":
+                GetComponent<SpriteRenderer>().sprite = PillSprites[1];
+                break;
+            case "Blue":
+                GetComponent<SpriteRenderer>().sprite = PillSprites[2];
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -26,12 +29,12 @@ public class Pill : MonoBehaviour
     {
 
         PlayerManager player = other.GetComponent<PlayerManager>();
-   
 
-            if (Red)
+        switch (Color) {
+            case "Red":
             {
             player.LastPill.enabled = true;
-            player.LastPill.color = player.Red;
+            player.LastPill.sprite = PillSprites[0];
                 switch (player.LastColor)
                 {
                     case PillColor.Green:
@@ -41,34 +44,36 @@ public class Pill : MonoBehaviour
                         Application.LoadLevel(Application.loadedLevel);
                         break;
                     default:
-                        player.LastColor = PillColor.Red;
+                            player.LastPill.sprite = PillSprites[0];
+                            player.LastColor = PillColor.Red;
                         break;
                 }
-            }
-            else if (Green)
+            }break;
+            case "Green":
             {
             player.LastPill.enabled = true;
-            player.LastPill.color = player.Green;
+                    player.LastPill.sprite = PillSprites[1];
             switch (player.LastColor)
                 {
                     case PillColor.Blue:
-                        player.ApplyPower(new Color(00,00,64,255),new Color(00,64,00,255));
+                        player.ApplyPower(PillSprites[2],PillSprites[1]);
                         
                         break;
                     case PillColor.Red:
-                        player.ApplySpeed(new Color(64, 00, 00, 255), new Color(00, 64, 00, 255));
+                        player.ApplySpeed(PillSprites[0], PillSprites[2]);
                         break;
                     default:
-                        player.LastColor = PillColor.Green;
+                            player.LastPill.sprite = PillSprites[1];
+                            player.LastColor = PillColor.Green;
                         break;
                 }
 
 
-            }
-            else if (Blue)
+            }break;
+            case "Blue":
             {
             player.LastPill.enabled = true;
-            player.LastPill.color = player.Blue;
+                    player.LastPill.sprite = PillSprites[2];
             switch (player.LastColor)
                 {
                     case PillColor.Green:
@@ -78,15 +83,15 @@ public class Pill : MonoBehaviour
                         Application.LoadLevel(Application.loadedLevel);
                         break;
                     default:
-                        player.LastColor = PillColor.Blue;
+                            player.LastPill.sprite = PillSprites[2];
+                            player.LastColor = PillColor.Blue;
                         break;
                 }
 
-            }
-            else if (White)
-            {
+            }break;
+            default:
                 player.ClearAbilities();
-
+                break;
             }
         Destroy(gameObject);
 

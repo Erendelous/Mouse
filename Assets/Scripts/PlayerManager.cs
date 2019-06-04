@@ -35,9 +35,6 @@ public class PlayerManager : MonoBehaviour
     */
     private Rigidbody2D _rb;
 
-    public Color Green = new Color(00, 64, 00, 255);
-    public Color Red = new Color(64, 00, 00, 255);
-    public Color Blue = new Color(00, 00, 64, 255);
 
     public Image LastPill;
     // Start is called before the first frame update
@@ -74,13 +71,13 @@ public class PlayerManager : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    public void ApplyPower(Color first, Color second)
+    public void ApplyPower(Sprite one, Sprite two)
     {
         ForceAbility = true;
         LastPill.enabled = false;
         LastColor = PillColor.Empty;
     }
-    public void ApplySpeed(Color first, Color second)
+    public void ApplySpeed(Sprite first, Sprite second)
     {
         Speed *= 2;
         LastPill.enabled = false;

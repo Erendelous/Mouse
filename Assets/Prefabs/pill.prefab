@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 18f7dc3bf86942a419fa5f3df9e5b890, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07d002c0700228341b00951758127d3e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.98, y: 1.98}
+    oldSize: {x: 0.51, y: 0.46}
     newSize: {x: 1.98, y: 1.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135cb08a5455c8943a76fe26872e0cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Green: 0
-  Red: 0
-  Blue: 0
-  White: 0
-  PillCol: {r: 1, g: 1, b: 1, a: 1}
+  Color: 
+  PillSprites:
+  - {fileID: 21300000, guid: de9233d170d681e48807f70d92bc1e61, type: 3}
+  - {fileID: 21300000, guid: 1665e389f7f89bf4389b76a034debd22, type: 3}
+  - {fileID: 21300000, guid: a850c82ead6b39644af1438e61f3b590, type: 3}
